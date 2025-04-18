@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar style="--background: #5e72e4;">
+    <ion-title style="color: white;">{{ isEdit ? 'Edit Student' : 'Add Student' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding" style="
+  background: linear-gradient(to right, #d7d2cc, #304352);
+">
+  <div style="
+    max-width: 600px;
+    margin: auto;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  ">
+    <form (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input [(ngModel)]="student.name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Roll Number</ion-label>
+        <ion-input [(ngModel)]="student.roll" name="roll" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Department</ion-label>
+        <ion-input [(ngModel)]="student.department" name="department"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Year</ion-label>
+        <ion-input type="number" [(ngModel)]="student.year" name="year"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Attendance (%)</ion-label>
+        <ion-input type="number" [(ngModel)]="student.attendance" name="attendance"></ion-input>
+      </ion-item>
+
+      <ion-list>
+        <ion-list-header>Subjects & Grades</ion-list-header>
+        <ion-item *ngFor="let subject of subjects; let i = index" style="border-radius: 12px;">
+          <ion-input [(ngModel)]="subjects[i]" name="subject-{{i}}" placeholder="Subject"></ion-input>
+          <ion-input [(ngModel)]="grades[i]" name="grade-{{i}}" placeholder="Grade" class="ion-margin-start"></ion-input>
+          <ion-button fill="clear" color="danger" (click)="removeSubject(i)">Remove</ion-button>
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="block" color="medium" (click)="addSubject()">Add Subject</ion-button>
+      <ion-button expand="block" type="submit" color="primary">
+        {{ isEdit ? 'Update' : 'Add' }} Student
+      </ion-button>
+    </form>
+  </div>
+</ion-content>
