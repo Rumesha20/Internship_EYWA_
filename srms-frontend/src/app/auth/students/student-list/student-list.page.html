@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar style="--background: #5e72e4;">
+    <ion-title style="color: white;">Student Records</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light" routerLink="/students/student-form">Add Student</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding" style="
+  background: linear-gradient(to right, #d7d2cc, #304352);
+">
+  <div style="
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  ">
+    <!-- 🔍 Search -->
+    <ion-item style="border-radius: 12px; margin-bottom: 16px;">
+      <ion-label position="floating">Search by name or roll</ion-label>
+      <ion-input [(ngModel)]="searchQuery" (ionInput)="filterStudents()"></ion-input>
+    </ion-item>
+
+    <!-- 🧮 Filter Options -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-select [(ngModel)]="selectedDepartment" (ionChange)="filterStudents()" placeholder="Department">
+            <ion-select-option *ngFor="let dept of departments">{{ dept }}</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-select [(ngModel)]="selectedYear" (ionChange)="filterStudents()" placeholder="Year">
+            <ion-select-option *ngFor="let y of years">{{ y }}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- 📋 Student List -->
+    <ion-list>
+      <ion-item *ngFor="let student of filteredStudents" style="
+        margin-bottom: 12px;
+        border-radius: 14px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      ">
+        <ion-label>
+          <h2 style="font-weight: 600;">{{ student.name }} ({{ student.roll }})</h2>
+          <p>{{ student.department }} - Year {{ student.year }}</p>
+          <p>Attendance: {{ student.attendance }}%</p>
+        </ion-label>
+
+        <ion-button fill="clear" color="primary" (click)="editStudent(student.id!)">Edit</ion-button>
+        <ion-button fill="clear" color="danger" (click)="deleteStudent(student.id!)">Delete</ion-button>
+        <ion-button fill="clear" color="medium" (click)="downloadPDF(student.id!)">PDF</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
