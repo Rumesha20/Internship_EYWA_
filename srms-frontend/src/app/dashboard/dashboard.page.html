@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar style="--background: #5e72e4;">
+    <ion-title style="color: white;">Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding" style="background: linear-gradient(to right, #d7d2cc, #304352);">
+  <div style="
+    max-width: 800px;
+    margin: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  ">
+    <ion-card style="background: rgba(255,255,255,0.65); backdrop-filter: blur(10px); border-radius: 16px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+      <ion-card-header>Total Students</ion-card-header>
+      <ion-card-content>{{ totalStudents }}</ion-card-content>
+    </ion-card>
+
+    <ion-card style="background: rgba(255,255,255,0.65); backdrop-filter: blur(10px); border-radius: 16px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+      <ion-card-header>Department Wise</ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let dept of departmentStats">
+            {{ dept.name }}: {{ dept.count }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="background: rgba(255,255,255,0.65); backdrop-filter: blur(10px); border-radius: 16px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+      <ion-card-header>Year Wise</ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let year of yearStats">
+            Year {{ year.year }}: {{ year.count }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="background: rgba(255,255,255,0.65); backdrop-filter: blur(10px); border-radius: 16px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+      <ion-card-header>Average Attendance</ion-card-header>
+      <ion-card-content>{{ averageAttendance | number:'1.0-2' }}%</ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
