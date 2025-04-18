@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar style="--background: #5e72e4;">
+    <ion-title class="ion-text-center" style="color: white;">Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen style="
+  background: linear-gradient(135deg, #c3cfe2 0%, #f5f7fa 100%);
+">
+  <div style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 16px;
+  ">
+    <div style="
+      backdrop-filter: blur(16px) saturate(180%);
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+      width: 100%;
+      max-width: 360px;
+    ">
+      <h2 style="color: #222; font-weight: 600; margin-bottom: 20px;">Create Account</h2>
+
+      <form (submit)="register()">
+
+        <ion-item style="
+          --background: transparent;
+          --highlight-color-focused: #5e72e4;
+          --border-color: #b0c4de;
+          border: 1px solid #b0c4de;
+          border-radius: 12px;
+          margin-bottom: 16px;
+          padding-inline: 10px;
+        ">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item style="
+          --background: transparent;
+          --highlight-color-focused: #5e72e4;
+          --border-color: #b0c4de;
+          border: 1px solid #b0c4de;
+          border-radius: 12px;
+          margin-bottom: 16px;
+          padding-inline: 10px;
+        ">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+
+        <ion-item style="
+          --background: transparent;
+          --highlight-color-focused: #5e72e4;
+          --border-color: #b0c4de;
+          border: 1px solid #b0c4de;
+          border-radius: 12px;
+          margin-bottom: 16px;
+          padding-inline: 10px;
+        ">
+          <ion-label>Role</ion-label>
+          <ion-select [(ngModel)]="role" name="role" required>
+            <ion-select-option value="admin">Admin</ion-select-option>
+            <ion-select-option value="faculty">Faculty</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" style="
+          --background: #5e72e4;
+          color: white;
+          font-weight: bold;
+          border-radius: 12px;
+          transition: 0.3s ease-in-out;
+          height: 40px;
+          box-shadow: 0 4px 14px rgba(94, 114, 228, 0.4);
+        "
+        onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 6px 20px rgba(94, 114, 228, 0.6)';"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 14px rgba(94, 114, 228, 0.4)';"
+        >Register</ion-button>
+
+        
+      </form>
+    </div>
+  </div>
+</ion-content>
